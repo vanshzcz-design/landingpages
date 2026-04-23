@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAI CLUB | Official Platform</title>
+<style>
+:root {
+  --bg: #050810;
+  --card: rgba(10, 15, 30, 0.92);
+  --cyan: #00e5ff;
+  --blue: #0066ff;
+  --green: #00ff88;
+  --purple: #8b5cf6;
+  --gold: #ffd700;
+  --orange: #ff6b35;
+  --text-dim: rgba(255,255,255,0.5);
+  --glass-border: rgba(255,255,255,0.07);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px 12px;
+  overflow-x: hidden;
+}
+
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+  background-size: 35px 35px;
+  mask-image: radial-gradient(circle, black 30%, transparent 70%);
+  z-index: 0;
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  pointer-events: none;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: rgba(0,102,255,0.12);
+  top: -15%; left: -10%;
+  animation: orbFloat1 12s ease-in-out infinite alternate;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: rgba(139,92,246,0.1);
+  bottom: -10%; right: -10%;
+  animation: orbFloat2 10s ease-in-out infinite alternate;
+}
+.orb-3 {
+  width: 350px; height: 350px;
+  background: rgba(0,229,255,0.07);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: orbFloat3 14s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  from { transform: translate(0,0) scale(1); }
+  to { transform: translate(60px,80px) scale(1.3); }
+}
+@keyframes orbFloat2 {
+  from { transform: translate(0,0) scale(1); }
+  to { transform: translate(-50px,-60px) scale(1.2); }
+}
+@keyframes orbFloat3 {
+  from { transform: translate(-50%,-50%) scale(1); opacity:.5; }
+  to { transform: translate(-30%,-40%) scale(1.4); opacity:.8; }
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 10;
+}
+
+/* LIVE BAR */
+.live-bar {
+  background: rgba(0,255,136,0.06);
+  border: 1px solid rgba(0,255,136,0.15);
+  border-radius: 14px;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  animation: fadeSlideDown 0.8s ease;
+  overflow: hidden;
+}
+
+.live-dot {
+  width: 8px; height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(0,255,136,0.5); }
+  50% { opacity:.7; box-shadow: 0 0 0 6px rgba(0,255,136,0); }
+}
+
+.live-bar .scroll-text {
+  white-space: nowrap;
+  animation: scrollText 22s linear infinite;
+}
+
+@keyframes scrollText {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-200%); }
+}
+
+/* MAIN CARD */
+.card {
+  background: var(--card);
+  backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 32px 22px 28px;
+  text-align: center;
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(255,255,255,0.03) inset;
+  position: relative;
+  overflow: hidden;
+  animation: cardEntry 1s cubic-bezier(0.16,1,0.3,1);
+}
+
+@keyframes cardEntry {
+  from { opacity:0; transform: translateY(40px) scale(0.95); }
+  to { opacity:1; transform: translateY(0) scale(1); }
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), transparent);
+  background-size: 200% 100%;
+  animation: borderFlow 4s linear infinite;
+}
+
+@keyframes borderFlow {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* AVATAR */
+.avatar-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 18px;
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(var(--cyan), var(--purple), var(--blue), var(--cyan));
+  animation: spinRing 4s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes spinRing { to { transform: rotate(360deg); } }
+
+.avatar-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.verified-icon {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 26px; height: 26px;
+  background: var(--cyan);
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verified-icon svg {
+  width: 13px; height: 13px;
+  fill: #000;
+}
+
+/* TYPOGRAPHY */
+.brand {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #fff 0%, #a0c4ff 50%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 5px;
+  animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from { filter: drop-shadow(0 0 8px rgba(0,229,255,0.3)); }
+  to { filter: drop-shadow(0 0 18px rgba(0,229,255,0.5)); }
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.member-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.member-count .dot {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+/* TAGS */
+.tags {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.tag {
+  padding: 6px 13px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border: 1px solid;
+}
+
+.tag-cyan { color: var(--cyan); border-color: rgba(0,229,255,0.2); background: rgba(0,229,255,0.06); }
+.tag-purple { color: var(--purple); border-color: rgba(139,92,246,0.2); background: rgba(139,92,246,0.06); }
+.tag-gold { color: var(--gold); border-color: rgba(255,215,0,0.2); background: rgba(255,215,0,0.06); }
+
+/* ═════════════════════════════════
+   MEGA CTA SECTION — FIRST CTA
+   ═════════════════════════════════ */
+.cta-section {
+  margin: 0 -22px;
+  padding: 28px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(0,229,255,0.04) 30%,
+    rgba(0,229,255,0.08) 50%,
+    rgba(0,229,255,0.04) 70%,
+    transparent 100%);
+  pointer-events: none;
+}
+
+/* Animated arrows pointing to CTA */
+.cta-arrows {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.cta-arrows span {
+  font-size: 18px;
+  animation: bounceArrow 1s ease-in-out infinite;
+  color: var(--gold);
+}
+
+.cta-arrows span:nth-child(2) { animation-delay: 0.15s; }
+.cta-arrows span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes bounceArrow {
+  0%,100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* Bonus badge */
+.bonus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,107,53,0.15));
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 30px;
+  padding: 8px 20px;
+  margin-bottom: 14px;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,215,0,0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(255,215,0,0); }
+}
+
+.bonus-badge .bonus-icon {
+  font-size: 20px;
+  animation: coinSpin 1.5s ease-in-out infinite;
+}
+
+@keyframes coinSpin {
+  0%,100% { transform: rotateY(0); }
+  50% { transform: rotateY(180deg); }
+}
+
+.bonus-badge .bonus-text {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+.bonus-badge .bonus-amount {
+  font-size: 20px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--gold), var(--orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Main CTA Button */
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 20px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #000;
+  background: linear-gradient(135deg, var(--cyan) 0%, #00b4d8 30%, var(--blue) 100%);
+  box-shadow:
+    0 8px 30px rgba(0,229,255,0.3),
+    0 0 60px rgba(0,229,255,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  animation: ctaAttention 3s ease-in-out infinite;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes ctaAttention {
+  0%,70%,100% { transform: scale(1); }
+  75% { transform: scale(1.03); }
+  80% { transform: scale(0.98); }
+  85% { transform: scale(1.02); }
+  90% { transform: scale(1); }
+}
+
+.cta:hover {
+  transform: translateY(-4px) scale(1.03) !important;
+  box-shadow:
+    0 16px 44px rgba(0,229,255,0.45),
+    0 0 80px rgba(0,229,255,0.2);
+}
+
+.cta:active { transform: scale(0.97) !important; }
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  30% { left: 120%; }
+  100% { left: 120%; }
+}
+
+/* Glow ring around CTA */
+.cta-glow-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 23px;
+  background: conic-gradient(var(--cyan), var(--blue), var(--purple), var(--cyan));
+  z-index: -1;
+  animation: spinRing 3s linear infinite;
+  opacity: 0.5;
+  filter: blur(3px);
+}
+
+.cta-wrapper {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.cta-subtext {
+  font-size: 11px;
+  color: rgba(0,229,255,0.6);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cta-subtext .mini-dot {
+  width: 4px; height: 4px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+}
+
+/* Floating side indicators */
+.side-indicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  padding: 0 4px;
+}
+
+.side-ind {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.side-ind svg {
+  width: 12px; height: 12px;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ═════════════════════════════════
+   TRUST BADGES ROW
+   ═════════════════════════════════ */
+.trust-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.trust-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: rgba(0,229,255,0.06);
+  border: 1px solid rgba(0,229,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trust-icon svg {
+  width: 16px; height: 16px;
+  stroke: var(--cyan);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trust-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+/* ═════════════════════════════════
+   STATS
+   ═════════════════════════════════ */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 16px 6px;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,229,255,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  border-color: var(--cyan);
+  box-shadow: 0 10px 25px rgba(0,229,255,0.08);
+}
+
+.stat:hover::after { opacity:1; }
+
+.stat-val {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.color-cyan { color: var(--cyan); }
+.color-green { color: var(--green); }
+.color-purple { color: var(--purple); }
+
+/* ═════════════════════════════════
+   SECOND CTA (MIDDLE STICKY)
+   ═════════════════════════════════ */
+.mid-cta-section {
+  margin: 0 -22px;
+  padding: 20px 22px;
+  background: linear-gradient(180deg, rgba(0,229,255,0.03), transparent);
+  border-top: 1px solid rgba(0,229,255,0.06);
+  border-bottom: 1px solid rgba(0,229,255,0.06);
+}
+
+.mid-cta-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.mid-cta-label strong {
+  color: var(--gold);
+}
+
+.cta-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(0,102,255,0.15));
+  border: 2px solid var(--cyan);
+  box-shadow: 0 0 30px rgba(0,229,255,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0%,100% { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,229,255,0.1); }
+  50% { border-color: var(--blue); box-shadow: 0 0 40px rgba(0,229,255,0.2); }
+}
+
+.cta-secondary:hover {
+  background: linear-gradient(135deg, rgba(0,229,255,0.25), rgba(0,102,255,0.25));
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(0,229,255,0.25);
+}
+
+.cta-secondary::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,229,255,0.15), transparent);
+  animation: shimmer 3s infinite 1s;
+}
+
+/* ═════════════════════════════════
+   FEATURES
+   ═════════════════════════════════ */
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.feature {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 14px 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  border-color: rgba(0,229,255,0.25);
+  transform: translateY(-2px);
+}
+
+.feature-icon {
+  width: 34px; height: 34px;
+  margin: 0 auto 6px;
+  background: rgba(0,229,255,0.06);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon svg {
+  width: 16px; height: 16px;
+  stroke: var(--cyan);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feature h4 { font-size: 11px; font-weight: 700; margin-bottom: 2px; }
+.feature p { font-size: 9px; color: var(--text-dim); }
+
+/* ═════════════════════════════════
+   TESTIMONIALS
+   ═════════════════════════════════ */
+.testimonials {
+  margin-bottom: 20px;
+}
+
+.testimonials-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.testimonial {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.testimonial:hover {
+  border-color: rgba(0,229,255,0.15);
+}
+
+.t-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #000;
+}
+
+.t-avatar-1 { background: linear-gradient(135deg, var(--cyan), var(--blue)); }
+.t-avatar-2 { background: linear-gradient(135deg, var(--purple), #e040fb); }
+.t-avatar-3 { background: linear-gradient(135deg, var(--green), #00bfa5); }
+
+.t-content { flex: 1; }
+
+.t-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.t-name {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.t-stars {
+  font-size: 10px;
+  color: var(--gold);
+}
+
+.t-text {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.t-amount {
+  font-size: 11px;
+  color: var(--green);
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* ═════════════════════════════════
+   BOTTOM MEGA CTA
+   ═════════════════════════════════ */
+.bottom-cta-section {
+  margin: 0 -22px -28px;
+  padding: 24px 22px 28px;
+  background: linear-gradient(180deg, transparent, rgba(0,229,255,0.05));
+  position: relative;
+}
+
+.urgency-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255,59,48,0.08);
+  border: 1px solid rgba(255,59,48,0.2);
+  border-radius: 12px;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+  animation: urgencyPulse 2s ease-in-out infinite;
+}
+
+@keyframes urgencyPulse {
+  0%,100% { background: rgba(255,59,48,0.08); }
+  50% { background: rgba(255,59,48,0.14); }
+}
+
+.urgency-bar .fire { font-size: 16px; }
+
+.urgency-bar .urgency-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ff6b6b;
+}
+
+.urgency-bar .urgency-text span {
+  color: #fff;
+  font-weight: 800;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.countdown-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 8px 12px;
+  text-align: center;
+  min-width: 52px;
+}
+
+.countdown-val {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--cyan);
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.cta-final {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 22px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #000;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 50%, #ff4444 100%);
+  box-shadow:
+    0 10px 35px rgba(255,215,0,0.3),
+    0 0 60px rgba(255,215,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+  animation: ctaFinalPulse 2s ease-in-out infinite;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes ctaFinalPulse {
+  0%,100% { box-shadow: 0 10px 35px rgba(255,215,0,0.3), 0 0 60px rgba(255,215,0,0.1); }
+  50% { box-shadow: 0 14px 45px rgba(255,215,0,0.5), 0 0 80px rgba(255,215,0,0.2); }
+}
+
+.cta-final:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 18px 50px rgba(255,215,0,0.5),
+    0 0 100px rgba(255,215,0,0.2);
+}
+
+.cta-final::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.cta-final-sub {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cta-final-sub svg {
+  width: 12px; height: 12px;
+  stroke: var(--green);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ═════════════════════════════════
+   WIN POPUP
+   ═════════════════════════════════ */
+.win-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: rgba(10,15,30,0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,255,136,0.2);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 999;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.win-popup.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.win-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.win-info { flex: 1; }
+.win-name { font-size: 12px; font-weight: 700; }
+.win-amount { font-size: 11px; color: var(--green); font-weight: 600; }
+.win-time { font-size: 10px; color: var(--text-dim); flex-shrink: 0; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1.8;
+  animation: fadeSlideDown 1.2s ease;
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═════════════════════════════════
+   STICKY BOTTOM BAR
+   ═════════════════════════════════ */
+.sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  padding: 12px 16px;
+  background: rgba(5,8,16,0.95);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(0,229,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.sticky-bar.visible {
+  transform: translateY(0);
+}
+
+.sticky-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #000;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  box-shadow: 0 6px 20px rgba(0,229,255,0.3);
+  flex: 1;
+  max-width: 320px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.sticky-cta::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+.sticky-bonus {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* RESPONSIVE */
+@media (max-width: 380px) {
+  .card { padding: 24px 16px 20px; }
+  .brand { font-size: 24px; }
+  .stat-val { font-size: 17px; }
+  .cta { padding: 18px; font-size: 15px; }
+  .cta-section { margin: 0 -16px; padding: 24px 16px; }
+  .mid-cta-section { margin: 0 -16px; padding: 18px 16px; }
+  .bottom-cta-section { margin: 0 -16px -20px; padding: 20px 16px 24px; }
+  .cta-final { padding: 18px 20px; font-size: 15px; }
+}
+
+@media (max-width: 320px) {
+  .tags { gap: 5px; }
+  .tag { padding: 5px 10px; font-size: 9px; }
+  .stats { gap: 5px; }
+  .countdown-item { min-width: 44px; padding: 6px 8px; }
+  .countdown-val { font-size: 17px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<div class="bg-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="wrapper">
+
+  <!-- Live notification bar -->
+  <div class="live-bar">
+    <div class="live-dot"></div>
+    <div style="overflow:hidden;flex:1;">
+      <span class="scroll-text" id="scrollText">
+        Rahul from Delhi won ₹12,500 &bull; Priya from Mumbai won ₹8,200 &bull; Arjun from Pune won ₹15,000 &bull; Sneha from Bangalore won ₹9,800
+      </span>
+    </div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card">
+
+    <!-- Avatar -->
+    <div class="avatar-container">
+      <div class="avatar-ring"></div>
+      <div class="avatar-inner">
+        <img src="https://jaiclub.games/wp-content/uploads/2026/03/jai-club-1-e1774171855952-300x300.jpeg" alt="JAI CLUB">
+      </div>
+      <div class="verified-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+    </div>
+
+    <!-- Brand -->
+    <h1 class="brand">JAI CLUB</h1>
+    <p class="subtitle">Premium Match Analysis Platform</p>
+    <div class="member-count">
+      <span class="dot"></span>
+      <span id="memberCount">500,038</span> Active Members
+    </div>
+
+    <!-- Tags -->
+    <div class="tags">
+      <span class="tag tag-cyan">Verified</span>
+      <span class="tag tag-purple">Elite Analyst</span>
+      <span class="tag tag-gold">VIP Access</span>
+    </div>
+
+    <!-- ═══ FIRST CTA SECTION ═══ -->
+    <div class="cta-section">
+      <div class="cta-arrows">
+        <span>▼</span><span>▼</span><span>▼</span>
+      </div>
+
+      <div class="bonus-badge">
+        <span class="bonus-icon">🪙</span>
+        <span class="bonus-text">FREE BONUS</span>
+        <span class="bonus-amount">₹58</span>
+      </div>
+
+      <div class="cta-wrapper">
+        <div class="cta-glow-ring"></div>
+        <a href="https://t.me/promotekids" target="_blank" rel="noopener noreferrer" class="cta" id="mainCta">
+          ⚡ Register Now — Get ₹58
+        </a>
+      </div>
+
+      <div class="cta-subtext">
+        <span class="mini-dot"></span>
+        <span id="recentJoin">2,847</span> joined in last 24 hours
+      </div>
+
+      <div class="side-indicators">
+        <div class="side-ind">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>SSL Secure</span>
+        </div>
+        <div class="side-ind">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          <span>Verified Platform</span>
+        </div>
+        <div class="side-ind">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+          <span>Instant Bonus</span>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="trust-row">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="trust-label">Secure</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          </div>
+          <span class="trust-label">Verified</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <span class="trust-label">24/7</span>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <span class="trust-label">5L+ Users</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-val color-cyan" data-target="25914">0</span>
+        <span class="stat-label">Match Tips</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val color-green" data-target="99" data-suffix="%">0</span>
+        <span class="stat-label">Win Rate</span>
+      </div>
+      <div class="stat">
+        <span class="stat-val color-purple" data-target="49" data-decimal="true">0</span>
+        <span class="stat-label">User Rating</span>
+      </div>
+    </div>
+
+    <!-- ═══ SECOND CTA SECTION ═══ -->
+    <div class="mid-cta-section">
+      <p class="mid-cta-label">🎯 Don't miss — <strong>Limited Time Offer!</strong></p>
+      <a href="https://t.me/promotekids" target="_blank" rel="noopener noreferrer" class="cta-secondary">
+        💎 Claim Your ₹58 Bonus Now
+      </a>
+    </div>
+
+    <!-- Features -->
+    <div class="features" style="margin-top:20px;">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>100% Secure</h4>
+        <p>Encrypted Platform</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h4>24/7 Support</h4>
+        <p>Always Available</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4>Daily Tips</h4>
+        <p>Expert Analysis</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4>5L+ Users</h4>
+        <p>Growing Community</p>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials">
+      <p class="testimonials-title">⭐ What Our Users Say</p>
+
+      <div class="testimonial">
+        <div class="t-avatar t-avatar-1">R</div>
+        <div class="t-content">
+          <div class="t-header">
+            <span class="t-name">Rahul S.</span>
+            <span class="t-stars">★★★★★</span>
+          </div>
+          <p class="t-text">"Best platform ever! I earned my first bonus within 5 minutes of joining. Highly recommended!"</p>
+          <p class="t-amount">Earned ₹12,500</p>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="t-avatar t-avatar-2">P</div>
+        <div class="t-content">
+          <div class="t-header">
+            <span class="t-name">Priya M.</span>
+            <span class="t-stars">★★★★★</span>
+          </div>
+          <p class="t-text">"The analysis tips are incredibly accurate. I've been using JAI CLUB for 3 months now!"</p>
+          <p class="t-amount">Earned ₹22,000</p>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="t-avatar t-avatar-3">A</div>
+        <div class="t-content">
+          <div class="t-header">
+            <span class="t-name">Arjun K.</span>
+            <span class="t-stars">★★★★★</span>
+          </div>
+          <p class="t-text">"Registered and got ₹58 bonus instantly. Withdrew my winnings the same day!"</p>
+          <p class="t-amount">Earned ₹18,300</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ BOTTOM MEGA CTA ═══ -->
+    <div class="bottom-cta-section">
+      <div class="urgency-bar">
+        <span class="fire">🔥</span>
+        <span class="urgency-text">Offer expires in <span id="offerTimer">--:--</span></span>
+        <span class="fire">🔥</span>
+      </div>
+
+      <div class="countdown" id="countdown">
+        <div class="countdown-item">
+          <span class="countdown-val" id="cdHours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-val" id="cdMins">00</span>
+          <span class="countdown-label">Mins</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-val" id="cdSecs">00</span>
+          <span class="countdown-label">Secs</span>
+        </div>
+      </div>
+
+      <a href="https://t.me/promotekids" target="_blank" rel="noopener noreferrer" class="cta-final">
+        🎁 GET ₹58 FREE — JOIN NOW
+      </a>
+
+      <div class="cta-final-sub">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        100% Safe &bull; Instant Bonus &bull; No Risk
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer" style="margin-bottom: 60px;">
+    Trusted Platform &bull; Secure Access &bull; 24/7 Support<br>
+    &copy; 2025 JAI CLUB. All rights reserved.
+  </div>
+
+</div>
+
+<!-- Win Popup -->
+<div class="win-popup" id="winPopup">
+  <div class="win-avatar" id="winAvatar">R</div>
+  <div class="win-info">
+    <div class="win-name" id="winName">Rahul S.</div>
+    <div class="win-amount" id="winAmount">Won ₹12,500</div>
+  </div>
+  <div class="win-time" id="winTime">Just now</div>
+</div>
+
+<!-- Sticky Bottom Bar -->
+<div class="sticky-bar" id="stickyBar">
+  <span class="sticky-bonus">🎁 ₹58 FREE</span>
+  <a href="https://t.me/promotekids" target="_blank" rel="noopener noreferrer" class="sticky-cta">
+    ⚡ Register Now
+  </a>
+</div>
+
+<script>
+/* ═══════════════════════════════
+   PARTICLE SYSTEM
+   ═══════════════════════════════ */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.3;
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.speedY = (Math.random() - 0.5) * 0.3;
+    this.opacity = Math.random() * 0.4 + 0.1;
+    this.pulse = Math.random() * Math.PI * 2;
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    this.pulse += 0.02;
+    this.opacity = 0.1 + Math.sin(this.pulse) * 0.15;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0, 229, 255, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 110) {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(0, 229, 255, ${0.05 * (1 - dist / 110)})`;
+        ctx.lineWidth = 0.5;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* ═══════════════════════════════
+   COUNTER ANIMATION
+   ═══════════════════════════════ */
+function animateCounters() {
+  const counters = document.querySelectorAll("[data-target]");
+  counters.forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || "";
+    const isDecimal = el.dataset.decimal === "true";
+    const duration = 2000;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      let current = Math.floor(eased * target);
+      if (isDecimal) {
+        el.textContent = (current / 10).toFixed(1) + suffix;
+      } else {
+        el.textContent = current.toLocaleString() + suffix;
+      }
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      observer.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+observer.observe(document.querySelector(".stats"));
+
+/* ═══════════════════════════════
+   LIVE MEMBER COUNT
+   ═══════════════════════════════ */
+let memberBase = 500038;
+const memberEl = document.getElementById("memberCount");
+function updateMembers() {
+  memberBase += Math.floor(Math.random() * 3) + 1;
+  memberEl.textContent = memberBase.toLocaleString();
+  setTimeout(updateMembers, 3000 + Math.random() * 5000);
+}
+updateMembers();
+
+/* ═══════════════════════════════
+   RECENT JOIN COUNTER
+   ═══════════════════════════════ */
+let recentJoinBase = 2847;
+const recentJoinEl = document.getElementById("recentJoin");
+function updateRecentJoin() {
+  recentJoinBase += Math.floor(Math.random() * 5) + 1;
+  recentJoinEl.textContent = recentJoinBase.toLocaleString();
+  setTimeout(updateRecentJoin, 4000 + Math.random() * 6000);
+}
+updateRecentJoin();
+
+/* ═══════════════════════════════
+   COUNTDOWN TIMER
+   ═══════════════════════════════ */
+let totalSeconds = 2 * 3600 + 47 * 60 + 33; // 2h 47m 33s
+
+function updateCountdown() {
+  if (totalSeconds <= 0) totalSeconds = 3 * 3600;
+  totalSeconds--;
+
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+
+  document.getElementById("cdHours").textContent = h.toString().padStart(2, "0");
+  document.getElementById("cdMins").textContent = m.toString().padStart(2, "0");
+  document.getElementById("cdSecs").textContent = s.toString().padStart(2, "0");
+  document.getElementById("offerTimer").textContent =
+    h.toString().padStart(2, "0") + ":" +
+    m.toString().padStart(2, "0") + ":" +
+    s.toString().padStart(2, "0");
+
+  setTimeout(updateCountdown, 1000);
+}
+updateCountdown();
+
+/* ═══════════════════════════════
+   WIN POPUP SYSTEM
+   ═══════════════════════════════ */
+const names = [
+  "Rahul S.","Priya M.","Arjun K.","Sneha R.","Vikram T.",
+  "Anjali D.","Rohan P.","Kavita N.","Amit G.","Deepa L.",
+  "Suresh B.","Meena V.","Karthik J.","Nisha A.","Rajesh W.",
+  "Pooja C.","Manoj H.","Swati F.","Aakash I.","Divya E."
+];
+const cities = [
+  "Delhi","Mumbai","Pune","Bangalore","Chennai",
+  "Hyderabad","Kolkata","Jaipur","Lucknow","Ahmedabad"
+];
+const amounts = [
+  "₹8,200","₹12,500","₹5,600","₹15,000","₹9,800",
+  "₹22,000","₹7,400","₹18,300","₹11,700","₹6,900"
+];
+const times = ["Just now","2 min ago","5 min ago","8 min ago","1 min ago"];
+
+const popup = document.getElementById("winPopup");
+const winAvatar = document.getElementById("winAvatar");
+const winName = document.getElementById("winName");
+const winAmount = document.getElementById("winAmount");
+const winTime = document.getElementById("winTime");
+
+function showWinPopup() {
+  const name = names[Math.floor(Math.random() * names.length)];
+  const city = cities[Math.floor(Math.random() * cities.length)];
+  const amount = amounts[Math.floor(Math.random() * amounts.length)];
+  const time = times[Math.floor(Math.random() * times.length)];
+
+  winAvatar.textContent = name.charAt(0);
+  winName.textContent = name + " from " + city;
+  winAmount.textContent = "Won " + amount;
+  winTime.textContent = time;
+
+  popup.classList.add("show");
+  setTimeout(() => { popup.classList.remove("show"); }, 4000);
+  setTimeout(showWinPopup, 6000 + Math.random() * 8000);
+}
+setTimeout(showWinPopup, 3000);
+
+/* ═══════════════════════════════
+   SCROLL TEXT
+   ═══════════════════════════════ */
+function generateScrollText() {
+  let text = "";
+  for (let i = 0; i < 6; i++) {
+    const name = names[Math.floor(Math.random() * names.length)];
+    const city = cities[Math.floor(Math.random() * cities.length)];
+    const amount = amounts[Math.floor(Math.random() * amounts.length)];
+    text += name + " from " + city + " won " + amount + " \u2022 ";
+  }
+  return text;
+}
+const scrollEl = document.getElementById("scrollText");
+setInterval(() => { scrollEl.textContent = generateScrollText(); }, 25000);
+
+/* ═══════════════════════════════
+   STICKY BAR ON SCROLL
+   ═══════════════════════════════ */
+const stickyBar = document.getElementById("stickyBar");
+const mainCta = document.getElementById("mainCta");
+
+function checkSticky() {
+  if (!mainCta) return;
+  const rect = mainCta.getBoundingClientRect();
+  if (rect.bottom < 0) {
+    stickyBar.classList.add("visible");
+  } else {
+    stickyBar.classList.remove("visible");
+  }
+}
+
+window.addEventListener("scroll", checkSticky, { passive: true });
+checkSticky();
+
+/* ═══════════════════════════════
+   RIPPLE EFFECT ON CTA CLICK
+   ═══════════════════════════════ */
+document.querySelectorAll(".cta, .cta-secondary, .cta-final, .sticky-cta").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    const ripple = document.createElement("span");
+    ripple.style.cssText = `
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      width: 10px; height: 10px;
+      left: ${e.offsetX - 5}px;
+      top: ${e.offsetY - 5}px;
+      animation: rippleAnim 0.6s ease-out forwards;
+      pointer-events: none;
+    `;
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+
+// Add ripple keyframes dynamically
+const rippleStyle = document.createElement("style");
+rippleStyle.textContent = `
+  @keyframes rippleAnim {
+    to { width: 200px; height: 200px; left: calc(50% - 100px); top: calc(50% - 100px); opacity: 0; }
+  }
+`;
+document.head.appendChild(rippleStyle);
+</script>
+</body>
+</html>
