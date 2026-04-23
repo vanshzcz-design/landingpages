@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour Trading VIP - Join Our Telegram Channel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --accent-red: #ff4757;
+            --accent-green: #2ed573;
+            --accent-yellow: #ffa502;
+            --dark: #0a0a1a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: floatBubble 15s infinite ease-in-out;
+        }
+
+        .bg-animation .circle:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-red);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation .circle:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-green);
+            top: 50%;
+            right: -100px;
+            animation-delay: 3s;
+        }
+
+        .bg-animation .circle:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            bottom: -50px;
+            left: 30%;
+            animation-delay: 6s;
+        }
+
+        .bg-animation .circle:nth-child(4) {
+            width: 250px;
+            height: 250px;
+            background: var(--accent-yellow);
+            top: 30%;
+            left: 20%;
+            animation-delay: 9s;
+        }
+
+        .bg-animation .circle:nth-child(5) {
+            width: 200px;
+            height: 200px;
+            background: var(--secondary);
+            bottom: 30%;
+            right: 20%;
+            animation-delay: 12s;
+        }
+
+        @keyframes floatBubble {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(40px, 20px) scale(1.05); }
+        }
+
+        /* Floating Colour Balls */
+        .floating-balls {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .ball {
+            position: absolute;
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+            opacity: 0.6;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 26, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 40px;
+            background: rgba(10, 10, 26, 0.95);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+        }
+
+        .nav-brand span {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-yellow), var(--accent-green), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-join-btn {
+            padding: 10px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .nav-join-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(108, 92, 231, 0.6);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: slideInLeft 1s ease;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(108, 92, 231, 0); }
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-yellow), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, #0088cc, #00aaff);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 136, 204, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: btnShine 3s infinite;
+        }
+
+        @keyframes btnShine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 136, 204, 0.6);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            color: white;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--secondary);
+            background: rgba(0, 206, 201, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInRight 1s ease;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .channel-card {
+            position: relative;
+            width: 350px;
+        }
+
+        .channel-card-inner {
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .channel-card-inner:hover {
+            border-color: rgba(108, 92, 231, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(108, 92, 231, 0.2);
+        }
+
+        .channel-card-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-yellow), var(--accent-green), var(--primary));
+            background-size: 300% auto;
+            animation: gradientBar 4s linear infinite;
+        }
+
+        @keyframes gradientBar {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
+        .channel-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .channel-avatar::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-yellow), var(--accent-green), var(--primary));
+            background-size: 300% auto;
+            animation: gradientShift 3s linear infinite;
+            z-index: -1;
+        }
+
+        .channel-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--dark);
+        }
+
+        .channel-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .channel-handle {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .channel-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .channel-meta {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+        }
+
+        .meta-label {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+
+        .channel-join-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0088cc, #00aaff);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .channel-join-btn:hover {
+            box-shadow: 0 8px 30px rgba(0, 136, 204, 0.5);
+            transform: scale(1.02);
+        }
+
+        /* Colour Dots Animation around card */
+        .orbit-dots {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .orbit-dot {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .orbit-dot:nth-child(1) { top: 0; left: 50%; background: var(--accent-red); box-shadow: 0 0 15px var(--accent-red); }
+        .orbit-dot:nth-child(2) { top: 50%; right: 0; background: var(--accent-green); box-shadow: 0 0 15px var(--accent-green); }
+        .orbit-dot:nth-child(3) { bottom: 0; left: 50%; background: var(--accent-yellow); box-shadow: 0 0 15px var(--accent-yellow); }
+        .orbit-dot:nth-child(4) { top: 50%; left: 0; background: var(--primary); box-shadow: 0 0 15px var(--primary); }
+
+        /* Live Results Ticker */
+        .ticker-section {
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .ticker-wrap {
+            display: flex;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .ticker-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .ticker-dot.red { background: var(--accent-red); }
+        .ticker-dot.green { background: var(--accent-green); }
+        .ticker-dot.yellow { background: var(--accent-yellow); }
+        .ticker-dot.purple { background: var(--primary); }
+
+        .win-tag {
+            padding: 2px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .win-tag.won {
+            background: rgba(46, 213, 115, 0.2);
+            color: var(--accent-green);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-yellow), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(108, 92, 231, 0.4);
+            box-shadow: 0 15px 50px rgba(108, 92, 231, 0.15);
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+
+        .feature-icon.red { background: rgba(255, 71, 87, 0.15); }
+        .feature-icon.green { background: rgba(46, 213, 115, 0.15); }
+        .feature-icon.yellow { background: rgba(255, 165, 2, 0.15); }
+        .feature-icon.purple { background: rgba(108, 92, 231, 0.15); }
+        .feature-icon.blue { background: rgba(0, 206, 201, 0.15); }
+        .feature-icon.pink { background: rgba(253, 121, 168, 0.15); }
+
+        .feature-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        /* Results Section */
+        .results {
+            padding: 100px 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .result-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: scale(1.05);
+        }
+
+        .result-colour {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+        }
+
+        .result-colour.red { background: linear-gradient(135deg, #ff4757, #ff6b81); box-shadow: 0 5px 20px rgba(255, 71, 87, 0.4); }
+        .result-colour.green { background: linear-gradient(135deg, #2ed573, #7bed9f); box-shadow: 0 5px 20px rgba(46, 213, 115, 0.4); }
+        .result-colour.yellow { background: linear-gradient(135deg, #ffa502, #ffda79); box-shadow: 0 5px 20px rgba(255, 165, 2, 0.4); }
+        .result-colour.purple { background: linear-gradient(135deg, #6c5ce7, #a29bfe); box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4); }
+
+        .result-period {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .result-prediction {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .result-status {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .result-status.won {
+            background: rgba(46, 213, 115, 0.2);
+            color: var(--accent-green);
+        }
+
+        .result-status.pending {
+            background: rgba(255, 165, 2, 0.2);
+            color: var(--accent-yellow);
+        }
+
+        /* Win Rate Section */
+        .winrate {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .winrate-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .winrate-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .circle-progress {
+            position: relative;
+            width: 280px;
+            height: 280px;
+        }
+
+        .circle-progress svg {
+            transform: rotate(-90deg);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.08);
+            stroke-width: 12;
+        }
+
+        .circle-fill {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 12;
+            stroke-linecap: round;
+            stroke-dasharray: 814;
+            stroke-dashoffset: 814;
+            animation: fillCircle 2s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fillCircle {
+            to { stroke-dashoffset: 122; }
+        }
+
+        .circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .circle-percentage {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-green), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .circle-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .winrate-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .winrate-info h3 span {
+            color: var(--accent-green);
+        }
+
+        .winrate-info p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .winrate-list {
+            list-style: none;
+        }
+
+        .winrate-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .winrate-list li .check {
+            width: 24px;
+            height: 24px;
+            background: rgba(46, 213, 115, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-green);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(108, 92, 231, 0.3);
+        }
+
+        .testimonial-stars {
+            color: var(--accent-yellow);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-avatar.t1 { background: rgba(255, 71, 87, 0.2); color: var(--accent-red); }
+        .testimonial-avatar.t2 { background: rgba(46, 213, 115, 0.2); color: var(--accent-green); }
+        .testimonial-avatar.t3 { background: rgba(108, 92, 231, 0.2); color: var(--primary); }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-date {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 45px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-yellow), var(--accent-green), var(--primary));
+            z-index: 0;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .step:nth-child(1) .step-number { background: linear-gradient(135deg, var(--accent-red), #ff6b81); box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4); }
+        .step:nth-child(2) .step-number { background: linear-gradient(135deg, var(--accent-yellow), #ffda79); color: #333; box-shadow: 0 8px 25px rgba(255, 165, 2, 0.4); }
+        .step:nth-child(3) .step-number { background: linear-gradient(135deg, var(--accent-green), #7bed9f); box-shadow: 0 8px 25px rgba(46, 213, 115, 0.4); }
+        .step:nth-child(4) .step-number { background: linear-gradient(135deg, var(--primary), #a29bfe); box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4); }
+
+        .step-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(108, 92, 231, 0.15), rgba(0, 206, 201, 0.1));
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 30px;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-yellow), var(--accent-green), var(--primary));
+            border-radius: 31px;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 4s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
+        }
+
+        .cta-emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .cta h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .cta h2 span {
+            background: linear-gradient(135deg, var(--accent-green), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #0088cc, #00aaff);
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 136, 204, 0.5);
+            animation: ctaPulse 2s ease infinite;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(0, 136, 204, 0.4); }
+            50% { box-shadow: 0 10px 60px rgba(0, 136, 204, 0.7); }
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+        }
+
+        .cta-note {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand img {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+        }
+
+        .footer-brand span {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-yellow), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Floating Join Button (Mobile) */
+        .floating-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #0088cc, #00aaff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(0, 136, 204, 0.5);
+            z-index: 999;
+            animation: bounce 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-12px); }
+            60% { transform: translateY(-6px); }
+        }
+
+        /* Counter Animation */
+        .counter-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(0, 206, 201, 0.05));
+        }
+
+        .counter-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .counter-item {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .counter-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .counter-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--secondary), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .counter-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .winrate-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps::before {
+                display: none;
+            }
+
+            .counter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .counter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 12px 20px;
+            }
+
+            .nav-brand span {
+                font-size: 1.1rem;
+            }
+
+            .channel-card {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta h2 {
+                font-size: 1.6rem;
+            }
+
+            .cta-container {
+                padding: 40px 25px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- Floating Balls -->
+    <div class="floating-balls" id="floatingBalls"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-brand">
+            <img src="https://jaiclub.games/wp-content/uploads/2026/03/jai-club-1-e1774171855952-300x300.jpeg" alt="Colour Trading VIP">
+            <span>Colour Trading VIP</span>
+        </a>
+        <a href="https://t.me/promotekids" target="_blank" class="nav-join-btn">✈️ Join Now</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    <span>🔥 FREE VIP Predictions — Live Now</span>
+                </div>
+                <h1 class="hero-title">
+                    Win Big With<br>
+                    <span class="gradient-text">Colour Trading</span><br>
+                    Predictions
+                </h1>
+                <p class="hero-desc">
+                    Join our exclusive Telegram channel for <strong>daily colour trading predictions</strong> with proven 85%+ accuracy. Get free signals, expert tips & winning strategies delivered directly to your phone.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://t.me/promotekids" target="_blank" class="btn-primary">
+                        ✈️ Join Telegram Channel
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        📊 See Results
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Win Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Daily Wins</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="channel-card">
+                    <div class="orbit-dots">
+                        <div class="orbit-dot"></div>
+                        <div class="orbit-dot"></div>
+                        <div class="orbit-dot"></div>
+                        <div class="orbit-dot"></div>
+                    </div>
+                    <div class="channel-card-inner">
+                        <div class="channel-avatar">
+                            <img src="https://jaiclub.games/wp-content/uploads/2026/03/jai-club-1-e1774171855952-300x300.jpeg" alt="Channel Avatar">
+                        </div>
+                        <h3 class="channel-name">Colour Trading VIP</h3>
+                        <p class="channel-handle">@promotekids</p>
+                        <p class="channel-desc">🎯 Daily Free Predictions<br>🏆 85%+ Accuracy | 💰 Proven Results</p>
+                        <div class="channel-meta">
+                            <div class="meta-item">
+                                <div class="meta-value">10K+</div>
+                                <div class="meta-label">Members</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value">24/7</div>
+                                <div class="meta-label">Support</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value">FREE</div>
+                                <div class="meta-label">Access</div>
+                            </div>
+                        </div>
+                        <a href="https://t.me/promotekids" target="_blank" class="channel-join-btn">✈️ JOIN CHANNEL</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Ticker -->
+    <div class="ticker-section">
+        <div class="ticker-wrap">
+            <div class="ticker-item"><span class="ticker-dot red"></span> Period 4521 — Red <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot green"></span> Period 4522 — Green <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot red"></span> Period 4523 — Red <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot green"></span> Period 4524 — Green <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot purple"></span> Period 4525 — Violet <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot red"></span> Period 4526 — Red <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot green"></span> Period 4527 — Green <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot yellow"></span> Period 4528 — Big <span class="win-tag won">✅ WON</span></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="ticker-item"><span class="ticker-dot red"></span> Period 4521 — Red <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot green"></span> Period 4522 — Green <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot red"></span> Period 4523 — Red <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot green"></span> Period 4524 — Green <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot purple"></span> Period 4525 — Violet <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot red"></span> Period 4526 — Red <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot green"></span> Period 4527 — Green <span class="win-tag won">✅ WON</span></div>
+            <div class="ticker-item"><span class="ticker-dot yellow"></span> Period 4528 — Big <span class="win-tag won">✅ WON</span></div>
+        </div>
+    </div>
+
+    <!-- Counter Section -->
+    <div class="counter-section">
+        <div class="counter-grid">
+            <div class="counter-item fade-in">
+                <div class="counter-icon">👥</div>
+                <div class="counter-value">10,000+</div>
+                <div class="counter-label">Active Members</div>
+            </div>
+            <div class="counter-item fade-in">
+                <div class="counter-icon">🎯</div>
+                <div class="counter-value">85%+</div>
+                <div class="counter-label">Accuracy Rate</div>
+            </div>
+            <div class="counter-item fade-in">
+                <div class="counter-icon">📊</div>
+                <div class="counter-value">50+</div>
+                <div class="counter-label">Daily Signals</div>
+            </div>
+            <div class="counter-item fade-in">
+                <div class="counter-icon">💰</div>
+                <div class="counter-value">₹5L+</div>
+                <div class="counter-label">Daily Earnings</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Why Choose Us</div>
+            <h2 class="section-title">Everything You Need to <span>Win Big</span></h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon red">🎯</div>
+                <h3 class="feature-title">Accurate Predictions</h3>
+                <p class="feature-desc">Our expert analysts provide colour predictions with 85%+ proven accuracy rate every single day.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon green">⚡</div>
+                <h3 class="feature-title">Instant Signals</h3>
+                <p class="feature-desc">Get real-time colour trading signals directly on your Telegram. Never miss a winning opportunity.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon yellow">📊</div>
+                <h3 class="feature-title">Daily Analysis</h3>
+                <p class="feature-desc">Detailed pattern analysis, trend charts, and data-driven predictions for every trading period.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon purple">🏆</div>
+                <h3 class="feature-title">Proven Track Record</h3>
+                <p class="feature-desc">Verified winning screenshots posted daily. Transparency is our commitment to every member.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon blue">🤝</div>
+                <h3 class="feature-title">24/7 Support</h3>
+                <p class="feature-desc">Dedicated support team available round the clock to help you with strategies and queries.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon pink">🎁</div>
+                <h3 class="feature-title">100% Free Access</h3>
+                <p class="feature-desc">All predictions and signals are completely FREE. No hidden charges, no premium traps.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results" id="results">
+        <div class="results-container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Recent Predictions</div>
+                <h2 class="section-title">Our Latest <span>Winning Results</span></h2>
+            </div>
+            <div class="results-grid">
+                <div class="result-card fade-in">
+                    <div class="result-colour red"></div>
+                    <div class="result-period">Period #4521</div>
+                    <div class="result-prediction">🔴 Red — Big</div>
+                    <div class="result-status won">✅ WON</div>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-colour green"></div>
+                    <div class="result-period">Period #4522</div>
+                    <div class="result-prediction">🟢 Green — Small</div>
+                    <div class="result-status won">✅ WON</div>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-colour red"></div>
+                    <div class="result-period">Period #4523</div>
+                    <div class="result-prediction">🔴 Red — Big</div>
+                    <div class="result-status won">✅ WON</div>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-colour green"></div>
+                    <div class="result-period">Period #4524</div>
+                    <div class="result-prediction">🟢 Green — Small</div>
+                    <div class="result-status won">✅ WON</div>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-colour purple"></div>
+                    <div class="result-period">Period #4525</div>
+                    <div class="result-prediction">🟣 Violet — Big</div>
+                    <div class="result-status won">✅ WON</div>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-colour red"></div>
+                    <div class="result-period">Period #4526</div>
+                    <div class="result-prediction">🔴 Red — Small</div>
+                    <div class="result-status won">✅ WON</div>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-colour green"></div>
+                    <div class="result-period">Period #4527</div>
+                    <div class="result-prediction">🟢 Green — Big</div>
+                    <div class="result-status won">✅ WON</div>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-colour yellow"></div>
+                    <div class="result-period">Period #4528</div>
+                    <div class="result-prediction">🟡 Yellow — Big</div>
+                    <div class="result-status pending">⏳ PENDING</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Win Rate Section -->
+    <section class="winrate">
+        <div class="winrate-container">
+            <div class="winrate-visual fade-in">
+                <div class="circle-progress">
+                    <svg width="280" height="280" viewBox="0 0 280 280">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#2ed573" />
+                                <stop offset="50%" style="stop-color:#00cec9" />
+                                <stop offset="100%" style="stop-color:#6c5ce7" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="circle-bg" cx="140" cy="140" r="130"></circle>
+                        <circle class="circle-fill" cx="140" cy="140" r="130"></circle>
+                    </svg>
+                    <div class="circle-text">
+                        <div class="circle-percentage">85%</div>
+                        <div class="circle-label">Win Rate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="winrate-info fade-in">
+                <h3>Industry-Leading <span>Win Rate</span> You Can Trust</h3>
+                <p>Our advanced algorithms and expert analysis deliver consistently accurate colour trading predictions. Join thousands of successful traders who trust our signals daily.</p>
+                <ul class="winrate-list">
+                    <li><span class="check">✓</span> Advanced pattern recognition algorithms</li>
+                    <li><span class="check">✓</span> Expert team of 5+ professional analysts</li>
+                    <li><span class="check">✓</span> Real-time data monitoring & analysis</li>
+                    <li><span class="check">✓</span> Verified results with daily screenshots</li>
+                    <li><span class="check">✓</span> Multiple platform predictions coverage</li>
+                    <li><span class="check">✓</span> Risk management strategies included</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">Getting Started</div>
+            <h2 class="section-title">How It <span>Works</span></h2>
+        </div>
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-number">1</div>
+                <h4 class="step-title">Join Channel</h4>
+                <p class="step-desc">Click the join button and become a member of our Telegram channel instantly</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">2</div>
+                <h4 class="step-title">Get Signals</h4>
+                <p class="step-desc">Receive accurate colour trading predictions directly in your Telegram</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">3</div>
+                <h4 class="step-title">Place Trades</h4>
+                <p class="step-desc">Follow our expert signals and place your trades on any colour trading platform</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">4</div>
+                <h4 class="step-title">Win & Earn</h4>
+                <p class="step-desc">Watch your earnings grow with our 85%+ accuracy predictions every day</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header fade-in">
+                <div class="section-subtitle">Member Reviews</div>
+                <h2 class="section-title">What Our <span>Members Say</span></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I've been following this channel for 3 months and my winning rate has skyrocketed! The predictions are incredibly accurate. Best free channel ever!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar t1">R</div>
+                        <div>
+                            <div class="testimonial-name">Rahul S.</div>
+                            <div class="testimonial-date">Member since Jan 2025</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Amazing accuracy! I was skeptical at first but the results speak for themselves. Made consistent profits following the daily signals. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar t2">A</div>
+                        <div>
+                            <div class="testimonial-name">Amit K.</div>
+                            <div class="testimonial-date">Member since Feb 2025</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"The best colour prediction channel on Telegram! The admin is very helpful, predictions are on time, and the accuracy is genuinely 85%+. Love it! 🔥"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar t3">P</div>
+                        <div>
+                            <div class="testimonial-name">Priya M.</div>
+                            <div class="testimonial-date">Member since Dec 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container fade-in">
+            <div class="cta-emoji">🚀🎯💰</div>
+            <h2>Don't Miss Today's <span>Winning Signals!</span></h2>
+            <p>Join 10,000+ smart traders who are already earning daily with our accurate colour trading predictions. It's 100% FREE — join now before the next signal drops!</p>
+            <a href="https://t.me/promotekids" target="_blank" class="cta-btn">
+                ✈️ Join Telegram Now — It's FREE!
+            </a>
+            <p class="cta-note">🔒 Free forever • No spam • Instant access • Leave anytime</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <img src="https://jaiclub.games/wp-content/uploads/2026/03/jai-club-1-e1774171855952-300x300.jpeg" alt="Logo">
+            <span>Colour Trading VIP</span>
+        </div>
+        <p>© 2025 Colour Trading VIP. All rights reserved.</p>
+        <p style="margin-top: 8px; font-size: 0.7rem;">⚠️ Disclaimer: Colour trading involves financial risk. Trade responsibly. Past results do not guarantee future outcomes.</p>
+        <div class="footer-links">
+            <a href="https://t.me/promotekids" target="_blank">Telegram Channel</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- Floating Telegram Button -->
+    <a href="https://t.me/promotekids" target="_blank" class="floating-btn" title="Join Telegram">
+        ✈️
+    </a>
+
+    <script>
+        // Floating Balls Generator
+        function createFloatingBalls() {
+            const container = document.getElementById('floatingBalls');
+            const colours = ['#ff4757', '#2ed573', '#ffa502', '#6c5ce7', '#00cec9', '#ff6b81', '#7bed9f'];
+
+            for (let i = 0; i < 20; i++) {
+                const ball = document.createElement('div');
+                ball.className = 'ball';
+                const size = Math.random() * 15 + 5;
+                ball.style.width = size + 'px';
+                ball.style.height = size + 'px';
+                ball.style.left = Math.random() * 100 + '%';
+                ball.style.background = colours[Math.floor(Math.random() * colours.length)];
+                ball.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                ball.style.animationDelay = (Math.random() * 10) + 's';
+                ball.style.boxShadow = `0 0 ${size}px ${ball.style.background}`;
+                container.appendChild(ball);
+            }
+        }
+        createFloatingBalls();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
